@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Oh the places we'll go....</title>
+    <link rel="stylesheet" href="styles.css" media="screen" title="no title">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Datepicker - Select a Date Range</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            var dateFormat = "mm/dd/yy",
+                from = $("#from")
+                .datepicker({
+                    defaultDate: "0",
+                    changeMonth: true,
+                    numberOfMonths: 1
+                })
+                .on("change", function() {
+                    to.datepicker("option", "minDate", getDate(this));
+                }),
+                to = $("#to").datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1
+                })
+                .on("change", function() {
+                    from.datepicker("option", "maxDate", getDate(this));
+                });
+
+            function getDate(element) {
+                var date;
+                try {
+                    date = $.datepicker.parseDate(dateFormat, element.value);
+                } catch (error) {
+                    date = null;
+                }
+
+                return date;
+            }
+        });
+    </script>
+</head>
+
+<body>
+
+    <form class="trip_planner" action="" method="post" name "trip_planner">
+
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" placeholder="Jane Doe" required>
+            <span class="form_hint"> Enter first and last name.</span>
+        </div>
+        <div>
+            <label for="destination">Destination:</label>
+            <input for="destination" type="text" name="from" placeholder="From" required>
+            <span class="form_hint">Enter three letter airport code</span>
+            <label for="toDestination">to</label>
+            <input for="destination" type="text" name="to" placeholder="T0" required>
+            <span class="form_hint">Enter three letter airport code</span>
+        </div>
+        <div>
+            <label for="dates">Dates:</label>
+            <input for="toDates" type="text" id="from" name="from" placeholder="01/01/2016">
+            <label for="toDates"> to</label>
+            <input for="toDates" type="text" id="to" name="to" placeholder="01/10/2016">
+        </div>
+        <div>
+            <label for="passengers">Passengers:</label>
+            <select class="passengers" name="passengers" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div>
+            <label for="pets">Pets?</label>
+            <input type="radio" name="answer" value="Yes">Yes</input>
+            <input type="radio" name="answer" value="No">No</input>
+        </div>
+        <div>
+            <label for="notes">Special Notes:</label>
+            <textarea type="text" name="accommodations" cols: "40" rows="6"></textarea>
+        </div>
+        <div>
+            <h3> By clicking "I agree" you are agreeing to the Terms and Conditions</h3>
+            <input type="checkbox">I agree</input>
+        </div>
+        <div>
+            <button class="submit" type="submit">Submit</button>
+        </div>
+    </form>
+
+    <form class="signUp" action="" method="post" name "signUp">
+        <h2>Sign Up</h2>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" name="name" placeholder="Jane.Doe@abc.com" required>
+            <span class="form_hint">Proper Email Format "http://www.mysite.com"</span>
+        </div>
+        <div>
+            <label for="Password">Password:</label>
+            <input type="password" name="name" placeholder="Password" required>
+            <span class="form_hint"> Password must include a capitol and a number.</span>
+        </div>
+        <div>
+            <button class="submit" type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+
+</html>
